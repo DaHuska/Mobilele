@@ -1,33 +1,36 @@
 package org.softuni.mobilele.util;
 
+import org.softuni.mobilele.model.entity.UserRole;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 @Component
 @SessionScope
 public class CurrentUser {
-    String username;
+    private String username;
 
-    String password;
+    private String firstName;
 
-    String firstName;
+    private String lastName;
 
-    String lastName;
+    private UserRole role;
 
     boolean isLogged;
 
-    public void login(String firstName, String lastName, String username) {
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.isLogged = true;
+    public void login(String firstName, String lastName, String username, UserRole role) {
+        setUsername(username);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setRole(role);
+        setLogged(true);
     }
 
     public void logout() {
-        this.username = null;
-        this.firstName = null;
-        this.lastName = null;
-        this.isLogged = false;
+        setUsername(null);
+        setFirstName(null);
+        setLastName(null);
+        setRole(null);
+        setLogged(false);
     }
 
     public String getUsername() {
@@ -68,5 +71,13 @@ public class CurrentUser {
         isLogged = logged;
 
         return this;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }

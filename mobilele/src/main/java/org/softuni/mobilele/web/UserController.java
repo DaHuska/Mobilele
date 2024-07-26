@@ -18,7 +18,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/register")
+    @GetMapping("/register")
     public String register() {
         return "auth-register";
     }
@@ -27,10 +27,10 @@ public class UserController {
     public String register(UserDTO userDTO) {
         userService.registerUser(userDTO);
 
-        return "redirect:index";
+        return "redirect:/home";
     }
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login() {
         return "auth-login";
     }
@@ -39,13 +39,13 @@ public class UserController {
     public String login(UserLoginDTO userLoginDTO) {
         boolean isLoginSuccess = userService.loginUser(userLoginDTO);
 
-        return isLoginSuccess ? "index" : "auth-login";
+        return isLoginSuccess ? "redirect:/home" : "auth-login";
     }
 
     @GetMapping("/logout")
     public String logout() {
         userService.logoutUser();
 
-        return "auth-login";
+        return "redirect:/users/login";
     }
 }

@@ -3,7 +3,10 @@ package org.softuni.mobilele.service.impl;
 import org.softuni.mobilele.model.dto.UserDTO;
 import org.softuni.mobilele.model.dto.UserLoginDTO;
 import org.softuni.mobilele.model.entity.User;
+import org.softuni.mobilele.model.entity.UserRole;
+import org.softuni.mobilele.model.enums.RoleType;
 import org.softuni.mobilele.repository.UserRepository;
+import org.softuni.mobilele.repository.UserRoleRepository;
 import org.softuni.mobilele.service.UserService;
 import org.softuni.mobilele.util.CurrentUser;
 import org.springframework.stereotype.Service;
@@ -14,10 +17,12 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final UserRoleRepository userRoleRepository;
     private final CurrentUser currentUser;
 
-    public UserServiceImpl(UserRepository userRepository, CurrentUser currentUser) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, CurrentUser currentUser) {
         this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
         this.currentUser = currentUser;
     }
 
@@ -29,16 +34,24 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("User with username %s already exists".formatted(userDTO.username()));
         }
 
-        userRepository.save(map(userDTO));
+        userRepository.save(map(userDTO, userRoleRepository));
     }
 
-    private static User map(UserDTO userDTO) {
-        return new User()
+    private static User map(UserDTO userDTO, UserRoleRepository userRoleRepository) {
+        UserRole role = new UserRole();
+        role.setRoleType(RoleType.ADMIN);
+
+        User user = new User()
                 .setActive(true)
                 .setPassword(userDTO.password())
                 .setFirstName(userDTO.firstName())
                 .setLastName(userDTO.lastName())
-                .setUsername(userDTO.username());
+                .setUsername(userDTO.username())
+                .setRole(role);
+
+        userRoleRepository.save(role);
+
+        return user;
     }
 
     @Override
