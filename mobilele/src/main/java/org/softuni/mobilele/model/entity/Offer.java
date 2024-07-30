@@ -40,7 +40,7 @@ public class Offer {
     @Column(nullable = false)
     Date created;
 
-    @Column(nullable = false)
+    @Column
     Date modified;
 
     @OneToOne
