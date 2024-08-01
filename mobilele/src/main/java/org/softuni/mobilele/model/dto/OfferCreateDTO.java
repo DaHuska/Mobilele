@@ -2,16 +2,13 @@ package org.softuni.mobilele.model.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import org.softuni.mobilele.model.entity.Model;
 import org.softuni.mobilele.model.enums.EngineType;
 import org.softuni.mobilele.model.enums.TransmissionType;
 
 import java.util.Objects;
 
 public final class OfferCreateDTO {
-    @NotNull
-    Long modelID;
-
+    //TODO: Check Model field
     @NotNull
     @Positive
     private Double price;
@@ -35,14 +32,6 @@ public final class OfferCreateDTO {
 
     @NotNull
     private String imageURL;
-
-    public Long getModelID() {
-        return modelID;
-    }
-
-    public void setModelID(Long modelID) {
-        this.modelID = modelID;
-    }
 
     public Double getPrice() {
         return price;
@@ -98,19 +87,6 @@ public final class OfferCreateDTO {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
-    }
-
-    @Override
-    public String toString() {
-        return "OfferCreateDTO[" +
-                "modelID=" + modelID + ", " +
-                "price=" + price + ", " +
-                "engine=" + engine + ", " +
-                "transmission=" + transmission + ", " +
-                "year=" + year + ", " +
-                "mileage=" + mileage + ", " +
-                "description=" + description + ", " +
-                "imageURL=" + imageURL + ']';
     }
 
 }

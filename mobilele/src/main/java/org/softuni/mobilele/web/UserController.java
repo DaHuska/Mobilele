@@ -27,7 +27,7 @@ public class UserController {
     public String register(UserDTO userDTO) {
         userService.registerUser(userDTO);
 
-        return "redirect:/home";
+        return "redirect:/";
     }
 
     @GetMapping("/login")

@@ -54,7 +54,7 @@ public class OfferController {
     }
 
     @PostMapping("/add")
-    public String addOffer(@Valid OfferCreateDTO offerCreateDTO) {
+    public String addOffer(OfferCreateDTO offerCreateDTO) {
         offerService.createOffer(offerCreateDTO);
 
         return "redirect:/offers/all";

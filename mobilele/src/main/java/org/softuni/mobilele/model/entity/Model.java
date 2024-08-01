@@ -17,7 +17,7 @@ public class Model {
     @Column(nullable = false)
     private String name;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "category", nullable = false)
     private CategoryType category;
 
