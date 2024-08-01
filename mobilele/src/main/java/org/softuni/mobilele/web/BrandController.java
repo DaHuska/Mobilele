@@ -10,6 +10,6 @@ public class BrandController {
     @GetMapping("/all")
     public String allBrands() {
 
-        return "brands/all";
+        return "brands";
     }
 }

@@ -10,15 +10,16 @@
     <h2 class="text-center text-white">Upload Offer</h2>
     <form th:method="POST"
           th:action="@{/offers/add}"
+          th:object="${createOfferDTO}"
           class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
         <div class="row">
 
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="model">Model</label>
-                <select id="model" class="form-control" th:each="m : ${models}">
+                <select id="model" class="form-control" >
                     <option value="">- Select a model -</option>
-                    <optgroup label="Brand name">
-                        <option>Model</option>
+                    <optgroup th:each="b : ${brands}" th:label="${b.name}">
+                        <option th:each="m : ${b.models}" th:text="${m.name}"></option>
                     </optgroup>
                 </select>
                 <p class="errors alert alert-danger">
@@ -27,7 +28,12 @@
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label for="price" class="text-white font-weight-bold">Price</label>
-                <input id="price" type="number" min="0" step="100" class="form-control"
+                <input id="price"
+                       type="number"
+                       min="0"
+                       step="100"
+
+                       class="form-control"
                        placeholder="Suggested price"/>
                 <p  class="errors alert alert-danger">
                     Suggested price is required.

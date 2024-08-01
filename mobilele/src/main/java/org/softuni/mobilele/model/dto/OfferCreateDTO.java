@@ -6,32 +6,111 @@ import org.softuni.mobilele.model.entity.Model;
 import org.softuni.mobilele.model.enums.EngineType;
 import org.softuni.mobilele.model.enums.TransmissionType;
 
-public record OfferCreateDTO(
+import java.util.Objects;
+
+public final class OfferCreateDTO {
     @NotNull
-    Model model,
+    Long modelID;
 
     @NotNull
     @Positive
-    Double price,
+    private Double price;
 
     @NotNull
-    EngineType engine,
+    private EngineType engine;
 
     @NotNull
-    TransmissionType transmission,
-
-    @NotNull
-    @Positive
-    Integer year,
+    private TransmissionType transmission;
 
     @NotNull
     @Positive
-    Integer mileage,
+    private Integer year;
 
     @NotNull
-    String description,
+    @Positive
+    private Integer mileage;
 
     @NotNull
-    String imageURL
-) {
+    private String description;
+
+    @NotNull
+    private String imageURL;
+
+    public Long getModelID() {
+        return modelID;
+    }
+
+    public void setModelID(Long modelID) {
+        this.modelID = modelID;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public EngineType getEngine() {
+        return engine;
+    }
+
+    public void setEngine(EngineType engine) {
+        this.engine = engine;
+    }
+
+    public TransmissionType getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(TransmissionType transmission) {
+        this.transmission = transmission;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(Integer mileage) {
+        this.mileage = mileage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    @Override
+    public String toString() {
+        return "OfferCreateDTO[" +
+                "modelID=" + modelID + ", " +
+                "price=" + price + ", " +
+                "engine=" + engine + ", " +
+                "transmission=" + transmission + ", " +
+                "year=" + year + ", " +
+                "mileage=" + mileage + ", " +
+                "description=" + description + ", " +
+                "imageURL=" + imageURL + ']';
+    }
+
 }

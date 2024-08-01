@@ -12,33 +12,33 @@ public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    Long id;
+    private Long id;
 
     @Column(nullable = false)
-    String name;
+    private String name;
 
     @Enumerated
     @Column(name = "category", nullable = false)
-    CategoryType category;
+    private CategoryType category;
 
     @Length(min = 8, max = 512)
     @Column(name = "image_url", nullable = false)
-    String imageURL;
+    private String imageURL;
 
     @Column(name = "start_year", nullable = false)
-    int startYear;
+    private int startYear;
 
     @Column(name = "end_year", nullable = false)
-    int endYear;
+    private int endYear;
 
     @Column(nullable = false)
-    Date created;
+    private Date created;
 
     @Column(nullable = false)
-    Date modified;
+    private Date modified;
 
     @ManyToOne
-    Brand brand;
+    private Brand brand;
 
     public Long getId() {
         return id;

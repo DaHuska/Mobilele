@@ -3,6 +3,7 @@ package org.softuni.mobilele.model.entity;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "brands")
@@ -10,16 +11,19 @@ public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    Long id;
+    private Long id;
 
     @Column(nullable = false)
-    String name;
+    private String name;
 
     @Column(nullable = false)
-    Date created;
+    private Date created;
 
     @Column(nullable = false)
-    Date modified;
+    private Date modified;
+
+    @OneToMany(mappedBy = "brand", targetEntity = Model.class, fetch = FetchType.EAGER)
+    private List<Model> models;
 
     public Long getId() {
         return id;
@@ -51,5 +55,13 @@ public class Brand {
 
     public void setModified(Date modified) {
         this.modified = modified;
+    }
+
+    public List<Model> getModels() {
+        return models;
+    }
+
+    public void setModels(List<Model> models) {
+        this.models = models;
     }
 }
