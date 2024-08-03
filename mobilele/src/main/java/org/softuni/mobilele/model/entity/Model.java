@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.validator.constraints.Length;
 import org.softuni.mobilele.model.enums.CategoryType;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "models")

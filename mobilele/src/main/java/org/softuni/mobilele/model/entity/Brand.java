@@ -2,7 +2,7 @@ package org.softuni.mobilele.model.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Entity

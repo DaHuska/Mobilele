@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import org.softuni.mobilele.model.enums.EngineType;
 import org.softuni.mobilele.model.enums.TransmissionType;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "offers")
@@ -61,87 +61,109 @@ public class Offer {
         return text;
     }
 
-    public void setText(String text) {
+    public Offer setText(String text) {
         this.text = text;
+
+        return this;
     }
 
     public EngineType getEngine() {
         return engine;
     }
 
-    public void setEngine(EngineType engine) {
+    public Offer setEngine(EngineType engine) {
         this.engine = engine;
+
+        return this;
     }
 
     public String getImageURL() {
         return imageURL;
     }
 
-    public void setImageURL(String imageURL) {
+    public Offer setImageURL(String imageURL) {
         this.imageURL = imageURL;
+
+        return this;
     }
 
     public Integer getMileage() {
         return mileage;
     }
 
-    public void setMileage(Integer mileage) {
+    public Offer setMileage(Integer mileage) {
         this.mileage = mileage;
+
+        return this;
     }
 
     public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public Offer setPrice(Double price) {
         this.price = price;
+
+        return this;
     }
 
     public TransmissionType getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(TransmissionType transmission) {
+    public Offer setTransmission(TransmissionType transmission) {
         this.transmission = transmission;
+
+        return this;
     }
 
     public Integer getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public Offer setYear(Integer year) {
         this.year = year;
+
+        return this;
     }
 
     public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public Offer setCreated(Date created) {
         this.created = created;
+
+        return this;
     }
 
     public Date getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public Offer setModified(Date modified) {
         this.modified = modified;
+
+        return this;
     }
 
     public Model getModel() {
         return model;
     }
 
-    public void setModel(Model model) {
+    public Offer setModel(Model model) {
         this.model = model;
+
+        return this;
     }
 
     public User getSeller() {
         return seller;
     }
 
-    public void setSeller(User seller) {
+    public Offer setSeller(User seller) {
         this.seller = seller;
+
+        return this;
     }
 }

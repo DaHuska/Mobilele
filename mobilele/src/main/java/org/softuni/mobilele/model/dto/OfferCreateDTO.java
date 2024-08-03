@@ -2,6 +2,7 @@ package org.softuni.mobilele.model.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import org.softuni.mobilele.model.entity.Model;
 import org.softuni.mobilele.model.enums.EngineType;
 import org.softuni.mobilele.model.enums.TransmissionType;
 
@@ -32,6 +33,9 @@ public final class OfferCreateDTO {
 
     @NotNull
     private String imageURL;
+
+    @NotNull
+    String model;
 
     public Double getPrice() {
         return price;
@@ -89,4 +93,11 @@ public final class OfferCreateDTO {
         this.imageURL = imageURL;
     }
 
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
 }
