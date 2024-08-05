@@ -35,7 +35,7 @@ public final class OfferCreateDTO {
     private String imageURL;
 
     @NotNull
-    String model;
+    Long modelID;
 
     public Double getPrice() {
         return price;
@@ -93,11 +93,11 @@ public final class OfferCreateDTO {
         this.imageURL = imageURL;
     }
 
-    public String getModel() {
-        return model;
+    public Long getModelID() {
+        return modelID;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setModelID(Long modelID) {
+        this.modelID = modelID;
     }
 }

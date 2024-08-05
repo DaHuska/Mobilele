@@ -9,10 +9,9 @@ import org.softuni.mobilele.service.BrandService;
 import org.softuni.mobilele.service.OfferService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/offers")
@@ -54,9 +53,25 @@ public class OfferController {
     }
 
     @PostMapping("/add")
-    public String addOffer(OfferCreateDTO offerCreateDTO) {
+    public String addOffer(@Valid OfferCreateDTO offerCreateDTO,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("offerCreateDTO", offerCreateDTO);
+            redirectAttributes
+                    .addFlashAttribute("org.springframework.validation.BindingResult.offerCreateDTO", bindingResult);
+
+            return "redirect:/offers/add";
+        }
+
         offerService.createOffer(offerCreateDTO);
 
         return "redirect:/offers/all";
+    }
+
+    @GetMapping("/{id}/details")
+    public String getDetails(@PathVariable("id") Long id) {
+        return "details";
     }
 }
