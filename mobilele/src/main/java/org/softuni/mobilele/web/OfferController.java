@@ -1,8 +1,7 @@
 package org.softuni.mobilele.web;
 
 import jakarta.validation.Valid;
-import org.softuni.mobilele.model.dto.OfferCreateDTO;
-import org.softuni.mobilele.model.enums.CategoryType;
+import org.softuni.mobilele.model.dto.CreateOfferDTO;
 import org.softuni.mobilele.model.enums.EngineType;
 import org.softuni.mobilele.model.enums.TransmissionType;
 import org.softuni.mobilele.service.BrandService;
@@ -44,7 +43,7 @@ public class OfferController {
     @GetMapping("/add")
     public String addOffer(Model model) {
         if (!model.containsAttribute("createOfferDTO")) {
-            model.addAttribute("createOfferDTO", new OfferCreateDTO());
+            model.addAttribute("createOfferDTO", new CreateOfferDTO());
         }
 
         model.addAttribute("brands", brandService.getAllBrands());
@@ -53,19 +52,20 @@ public class OfferController {
     }
 
     @PostMapping("/add")
-    public String addOffer(@Valid OfferCreateDTO offerCreateDTO,
+    public String addOffer(@Valid CreateOfferDTO createOfferDTO,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("offerCreateDTO", offerCreateDTO);
             redirectAttributes
-                    .addFlashAttribute("org.springframework.validation.BindingResult.offerCreateDTO", bindingResult);
+                    .addFlashAttribute("createOfferDTO", createOfferDTO);
+            redirectAttributes
+                    .addFlashAttribute("org.springframework.validation.BindingResult.createOfferDTO", bindingResult);
 
             return "redirect:/offers/add";
         }
 
-        offerService.createOffer(offerCreateDTO);
+        offerService.createOffer(createOfferDTO);
 
         return "redirect:/offers/all";
     }

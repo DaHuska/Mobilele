@@ -2,13 +2,10 @@ package org.softuni.mobilele.model.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import org.softuni.mobilele.model.entity.Model;
 import org.softuni.mobilele.model.enums.EngineType;
 import org.softuni.mobilele.model.enums.TransmissionType;
 
-import java.util.Objects;
-
-public final class OfferCreateDTO {
+public final class CreateOfferDTO {
     //TODO: Check Model field
     @NotNull
     @Positive

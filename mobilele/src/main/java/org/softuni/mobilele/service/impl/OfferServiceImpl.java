@@ -1,6 +1,6 @@
 package org.softuni.mobilele.service.impl;
 
-import org.softuni.mobilele.model.dto.OfferCreateDTO;
+import org.softuni.mobilele.model.dto.CreateOfferDTO;
 import org.softuni.mobilele.model.entity.Model;
 import org.softuni.mobilele.model.entity.Offer;
 import org.softuni.mobilele.model.entity.User;
@@ -34,24 +34,24 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public void createOffer(OfferCreateDTO offerCreateDTO) {
+    public void createOffer(CreateOfferDTO createOfferDTO) {
         //TODO: Add implementation
-        offerRepository.save(map(offerCreateDTO));
+        offerRepository.save(map(createOfferDTO));
     }
 
-    private Offer map(OfferCreateDTO offerCreateDTO) {
+    private Offer map(CreateOfferDTO createOfferDTO) {
         // Optimize repository injections
         User user = userRepository.findByUsername(currentUser.getUsername()).get();
-        Model model = modelRepository.findByName(offerCreateDTO.getModel());
+        Model model = modelRepository.findById(createOfferDTO.getModelID()).get();
 
         return new Offer()
-                .setText(offerCreateDTO.getDescription())
-                .setEngine(offerCreateDTO.getEngine())
-                .setImageURL(offerCreateDTO.getImageURL())
-                .setMileage(offerCreateDTO.getMileage())
-                .setPrice(offerCreateDTO.getPrice())
-                .setTransmission(offerCreateDTO.getTransmission())
-                .setYear(offerCreateDTO.getYear())
+                .setText(createOfferDTO.getDescription())
+                .setEngine(createOfferDTO.getEngine())
+                .setImageURL(createOfferDTO.getImageURL())
+                .setMileage(createOfferDTO.getMileage())
+                .setPrice(createOfferDTO.getPrice())
+                .setTransmission(createOfferDTO.getTransmission())
+                .setYear(createOfferDTO.getYear())
                 .setCreated(new Date())
                 .setModified(new Date())
                 .setModel(model)
