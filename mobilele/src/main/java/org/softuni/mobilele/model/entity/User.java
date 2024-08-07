@@ -1,6 +1,8 @@
 package org.softuni.mobilele.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
@@ -10,34 +12,43 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    Long id;
+    private Long id;
 
+    @NotEmpty
     @Column(nullable = false)
-    String username;
+    private String username;
 
+    @NotEmpty
     @Column(nullable = false)
-    String password;
+    private String password;
 
+    @NotEmpty
     @Column(name = "first_name", nullable = false)
-    String firstName;
+    private String firstName;
 
+    @NotEmpty
     @Column(name = "last_name", nullable = false)
-    String lastName;
+    private String lastName;
 
+    @NotNull
     @Column(name = "is_active")
     boolean isActive;
 
+    @NotNull
     @ManyToOne
-    UserRole role;
+    private UserRole role;
 
+    @NotEmpty
     @Column(name = "image_url")
-    String imageURL;
+    private String imageURL;
 
-    @Column()
-    Date created;
+    @NotNull
+    @Column
+    private Date created;
 
-    @Column()
-    Date modified;
+    @NotNull
+    @Column
+    private Date modified;
 
     public Long getId() {
         return id;

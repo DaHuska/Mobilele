@@ -1,6 +1,8 @@
 package org.softuni.mobilele.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.softuni.mobilele.model.enums.EngineType;
 import org.softuni.mobilele.model.enums.TransmissionType;
 
@@ -12,42 +14,52 @@ public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    Long id;
+    private Long id;
 
+    @NotEmpty
     @Column(nullable = false)
-    String text;
+    private String text;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    EngineType engine;
+    private EngineType engine;
 
+    @NotEmpty
     @Column(name = "image_url", nullable = false)
-    String imageURL;
+    private String imageURL;
 
+    @NotNull
     @Column(nullable = false)
-    Integer mileage;
+    private Integer mileage;
 
+    @NotNull
     @Column(nullable = false)
-    Double price;
+    private Double price;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    TransmissionType transmission;
+    private TransmissionType transmission;
 
+    @NotNull
     @Column(nullable = false)
-    Integer year;
+    private Integer year;
 
+    //TODO: custom validation
+    @NotNull
     @Column(nullable = false)
-    Date created;
+    private Date created;
 
+    @NotNull
     @Column
-    Date modified;
+    private Date modified;
 
     @OneToOne
-    Model model;
+    private Model model;
 
     @ManyToOne
-    User seller;
+    private User seller;
 
     public Long getId() {
         return id;

@@ -1,6 +1,8 @@
 package org.softuni.mobilele.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 import java.util.List;
@@ -17,16 +19,19 @@ public class Brand {
     @Column(nullable = false)
     private Long id;
 
+    @NotEmpty
     @Column(nullable = false)
     private String name;
 
+    @NotNull
     @Column(nullable = false)
     private Date created;
 
+    @NotNull
     @Column(nullable = false)
     private Date modified;
 
-    @OneToMany(mappedBy = "brand", targetEntity = Model.class, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "brand", targetEntity = Model.class)
     private List<Model> models;
 
     public Long getId() {

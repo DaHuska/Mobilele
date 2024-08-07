@@ -1,6 +1,7 @@
 package org.softuni.mobilele.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import org.softuni.mobilele.model.enums.RoleType;
 
 @Entity
@@ -9,11 +10,12 @@ public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    Long id;
+    private Long id;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    RoleType role;
+    private RoleType role;
 
     public Long getId() {
         return id;

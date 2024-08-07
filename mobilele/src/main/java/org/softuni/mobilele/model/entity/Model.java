@@ -1,6 +1,10 @@
 package org.softuni.mobilele.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.softuni.mobilele.model.enums.CategoryType;
 
@@ -14,26 +18,35 @@ public class Model {
     @Column(nullable = false)
     private Long id;
 
+    @NotEmpty
     @Column(nullable = false)
     private String name;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "category", nullable = false)
     private CategoryType category;
 
+    @NotEmpty
     @Length(min = 8, max = 512)
     @Column(name = "image_url", nullable = false)
     private String imageURL;
 
+    @Min(1940)
+    @NotNull
     @Column(name = "start_year", nullable = false)
-    private int startYear;
+    private Integer startYear;
 
+    //TODO: custom
+    @NotNull
     @Column(name = "end_year", nullable = false)
-    private int endYear;
+    private Integer endYear;
 
+    @NotNull
     @Column(nullable = false)
     private Date created;
 
+    @NotNull
     @Column(nullable = false)
     private Date modified;
 
@@ -64,11 +77,11 @@ public class Model {
         this.category = categoryType;
     }
 
-    public @Length(min = 8, max = 512) String getImageURL() {
+    public String getImageURL() {
         return imageURL;
     }
 
-    public void setImageURL(@Length(min = 8, max = 512) String imageURL) {
+    public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
 
