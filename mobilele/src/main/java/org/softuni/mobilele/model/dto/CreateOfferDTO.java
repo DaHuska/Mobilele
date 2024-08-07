@@ -1,5 +1,6 @@
 package org.softuni.mobilele.model.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.softuni.mobilele.model.enums.EngineType;
@@ -25,10 +26,10 @@ public final class CreateOfferDTO {
     @Positive
     private Integer mileage;
 
-    @NotNull
+    @NotEmpty
     private String description;
 
-    @NotNull
+    @NotEmpty
     private String imageURL;
 
     @NotNull

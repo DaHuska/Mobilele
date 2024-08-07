@@ -18,7 +18,6 @@
                 <label class="text-center text-white font-weight-bold" for="model">Model</label>
                 <select id="model"
                         class="form-control"
-                        th:name="modelID"
                         th:field="*{modelID}"
                         th:errorclass="is-invalid">
                     <option value="">- Select a model -</option>
@@ -33,7 +32,6 @@
             <div class="form-group col-md-6 mb-3">
                 <label for="price" class="text-white font-weight-bold">Price</label>
                 <input id="price"
-                       th:name="price"
                        th:field="*{price}"
                        th:errorclass="is-invalid"
                        type="number"
@@ -49,7 +47,6 @@
                 <label class="text-center text-white font-weight-bold" for="engine">Engine</label>
                 <select id="engine"
                         class="form-control"
-                        th:name="engine"
                         th:field="*{engine}"
                         th:errorclass="is-invalid">
                     <option value="">- Select engine type -</option>
@@ -63,7 +60,6 @@
                 <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
                 <select id="transmission"
                         class="form-control"
-                        th:name="transmission"
                         th:field="*{transmission}"
                         th:errorclass="is-invalid">
                     <option value="">- Select transmission type -</option>
@@ -78,7 +74,6 @@
             <div class="form-group col-md-6 mb-3">
                 <label for="year" class="text-white font-weight-bold">Year</label>
                 <input id="year"
-                       th:name="year"
                        th:field="*{year}"
                        th:errorclass="is-invalid"
                        type="number"
@@ -92,7 +87,6 @@
             <div class="form-group col-md-6 mb-3">
                 <label for="mileage" class="text-white font-weight-bold">Mileage</label>
                 <input id="mileage" type="number" step="1000"
-                       th:name="mileage"
                        th:field="*{mileage}"
                        th:errorclass="is-invalid"
                        class="form-control"
@@ -106,7 +100,6 @@
         <div class="form-group">
             <label class="text-white font-weight-bold" for="description">Description</label>
             <textarea id="description"
-                      th:name="description"
                       th:field="*{description}"
                       th:errorclass="is-invalid"
                       type="textarea"
@@ -119,7 +112,6 @@
         <div class="form-group">
             <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
             <input id="imageUrl"
-                   th:name="imageURL"
                    th:field="*{imageURL}"
                    th:errorclass="is-invalid"
                    class="form-control"

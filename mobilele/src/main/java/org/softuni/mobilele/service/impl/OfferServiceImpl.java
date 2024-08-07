@@ -35,7 +35,6 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public void createOffer(CreateOfferDTO createOfferDTO) {
-        //TODO: Add implementation
         offerRepository.save(map(createOfferDTO));
     }
 

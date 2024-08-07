@@ -7,6 +7,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "brands")
+@NamedEntityGraph(
+        name = "brandWithModels",
+        attributeNodes = @NamedAttributeNode("models")
+)
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
