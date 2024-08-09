@@ -1,6 +1,6 @@
 package org.softuni.mobilele.service.impl;
 
-import org.softuni.mobilele.model.dto.UserDTO;
+import org.softuni.mobilele.model.dto.UserRegisterDTO;
 import org.softuni.mobilele.model.dto.UserLoginDTO;
 import org.softuni.mobilele.model.entity.User;
 import org.softuni.mobilele.model.entity.UserRole;
@@ -11,6 +11,7 @@ import org.softuni.mobilele.service.UserService;
 import org.softuni.mobilele.util.CurrentUser;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -27,26 +28,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerUser(UserDTO userDTO) {
-        Optional<User> foundRegisteredUser = userRepository.findByUsername(userDTO.username());
+    public boolean registerUser(UserRegisterDTO UserRegisterDTO) {
+        Optional<User> foundRegisteredUser = userRepository.findByUsername(UserRegisterDTO.getUsername());
 
+        //TODO: Swap with field validation
         if (foundRegisteredUser.isPresent()) {
-            throw new IllegalArgumentException("User with username %s already exists".formatted(userDTO.username()));
+            return false;
         }
 
-        userRepository.save(map(userDTO, userRoleRepository));
+        userRepository.save(map(UserRegisterDTO, userRoleRepository));
+
+        return true;
     }
 
-    private static User map(UserDTO userDTO, UserRoleRepository userRoleRepository) {
+    private static User map(UserRegisterDTO UserRegisterDTO, UserRoleRepository userRoleRepository) {
         UserRole role = new UserRole();
         role.setRoleType(RoleType.ADMIN);
 
         User user = new User()
                 .setActive(true)
-                .setPassword(userDTO.password())
-                .setFirstName(userDTO.firstName())
-                .setLastName(userDTO.lastName())
-                .setUsername(userDTO.username())
+                .setUsername(UserRegisterDTO.getUsername())
+                .setPassword(UserRegisterDTO.getPassword())
+                .setFirstName(UserRegisterDTO.getFirstName())
+                .setLastName(UserRegisterDTO.getLastName())
+                .setCreated(new Date())
+                .setModified(new Date())
                 .setRole(role);
 
         userRoleRepository.save(role);
@@ -56,11 +62,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean loginUser(UserLoginDTO userLoginDTO) {
-        Optional<User> foundExistingUser = userRepository.findByUsername(userLoginDTO.username());
+        //TODO: swap with field validation
+        Optional<User> foundExistingUser = userRepository.findByUsername(userLoginDTO.getUsername());
 
         if (foundExistingUser.isEmpty()) {
             return false;
-//            throw new IllegalArgumentException("User with username %s doesn't exist".formatted(userLoginDTO.username()));
+        }
+
+        if (!userLoginDTO.getPassword().equals(foundExistingUser.get().getPassword())) {
+            return false;
         }
 
         currentUser

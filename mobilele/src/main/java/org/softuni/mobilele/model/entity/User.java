@@ -38,7 +38,6 @@ public class User {
     @ManyToOne
     private UserRole role;
 
-    @NotEmpty
     @Column(name = "image_url")
     private String imageURL;
 

@@ -25,9 +25,8 @@
                         <option th:each="m : ${b.models}" th:value="${m.name}" th:text="${m.name}"></option>
                     </optgroup>
                 </select>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Vehicle model is required.
-                </p>
+                <p class="invalid-feedback errors alert alert-danger"
+                    th:errors="*{modelID}"></p>
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label for="price" class="text-white font-weight-bold">Price</label>
@@ -37,9 +36,8 @@
                        type="number"
                        class="form-control"
                        placeholder="Suggested price"/>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Suggested price is required.
-                </p>
+                <p class="invalid-feedback errors alert alert-danger"
+                    th:errors="*{price}"></p>
             </div>
         </div>
         <div class="row">
@@ -52,9 +50,8 @@
                     <option value="">- Select engine type -</option>
                     <option th:each="e : ${engines}" th:value="${e}" th:text="${e}"></option>
                 </select>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Engine type is required.
-                </p>
+                <p class="invalid-feedback errors alert alert-danger"
+                    th:errors="*{engine}"></p>
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
@@ -65,9 +62,8 @@
                     <option value="">- Select transmission type -</option>
                     <option th:each="t : ${transmissions}" th:value="${t}" th:text="${t}"></option>
                 </select>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Transmission type is required.
-                </p>
+                <p class="invalid-feedback errors alert alert-danger"
+                    th:errors="*{transmission}"></p>
             </div>
         </div>
         <div class="row">
@@ -80,9 +76,8 @@
                        step="1"
                        class="form-control"
                        placeholder="Manufacturing year"/>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Manufacturing year is required.
-                </p>
+                <p class="invalid-feedback errors alert alert-danger"
+                    th:errors="*{year}"></p>
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label for="mileage" class="text-white font-weight-bold">Mileage</label>
@@ -91,9 +86,8 @@
                        th:errorclass="is-invalid"
                        class="form-control"
                        placeholder="Mileage in kilometers"/>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Mileage in kilometers is required.
-                </p>
+                <p class="invalid-feedback errors alert alert-danger"
+                    th:errors="*{mileage}"></p>
             </div>
         </div>
 
@@ -105,9 +99,8 @@
                       type="textarea"
                       class="form-control" rows="3"
                       placeholder="Description"></textarea>
-            <p class="invalid-feedback errors alert alert-danger">
-                Description is required.
-            </p>
+            <p class="invalid-feedback errors alert alert-danger"
+                th:errors="*{description}"></p>
         </div>
         <div class="form-group">
             <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
@@ -116,9 +109,8 @@
                    th:errorclass="is-invalid"
                    class="form-control"
                    placeholder="Put vehicle image URL here">
-            <p class="invalid-feedback errors alert alert-danger">
-                Vehicle image URL is required.
-            </p>
+            <p class="invalid-feedback errors alert alert-danger"
+                th:errors="*{imageURL}"></p>
         </div>
 
         <div class="row">
