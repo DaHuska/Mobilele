@@ -1,11 +1,13 @@
 package org.softuni.mobilele.model.dto;
 
 import jakarta.validation.constraints.NotEmpty;
+import org.softuni.mobilele.model.validation.ExistingUsername;
 
 import java.util.Objects;
 
 public final class UserLoginDTO {
     @NotEmpty
+    @ExistingUsername
     private String username;
 
     @NotEmpty

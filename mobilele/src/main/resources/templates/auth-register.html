@@ -44,7 +44,7 @@
                        type="text"
                        class="form-control"
                        placeholder="First name"/>
-                <p class="invalid-feedback errors alert alert-danger">
+                <p class="invalid-feedback errors alert alert-danger" th:errors="*{username}">
                     Username is required.
                 </p>
             </div>

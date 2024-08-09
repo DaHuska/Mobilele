@@ -29,14 +29,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean registerUser(UserRegisterDTO userRegisterDTO) {
-        Optional<User> foundRegisteredUser = userRepository.findByUsername(userRegisterDTO.getUsername());
-
-        //TODO: Swap with field validation
-        if (foundRegisteredUser.isPresent() ||
-                !userRegisterDTO.getPassword().equals(userRegisterDTO.getConfirmPassword())) {
-            return false;
-        }
-
         userRepository.save(map(userRegisterDTO, userRoleRepository));
 
         return true;
@@ -63,12 +55,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean loginUser(UserLoginDTO userLoginDTO) {
-        //TODO: swap with field validation
         Optional<User> foundExistingUser = userRepository.findByUsername(userLoginDTO.getUsername());
-
-        if (foundExistingUser.isEmpty()) {
-            return false;
-        }
 
         if (!userLoginDTO.getPassword().equals(foundExistingUser.get().getPassword())) {
             return false;
