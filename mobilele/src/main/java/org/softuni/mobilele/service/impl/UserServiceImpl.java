@@ -28,29 +28,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean registerUser(UserRegisterDTO UserRegisterDTO) {
-        Optional<User> foundRegisteredUser = userRepository.findByUsername(UserRegisterDTO.getUsername());
+    public boolean registerUser(UserRegisterDTO userRegisterDTO) {
+        Optional<User> foundRegisteredUser = userRepository.findByUsername(userRegisterDTO.getUsername());
 
         //TODO: Swap with field validation
-        if (foundRegisteredUser.isPresent()) {
+        if (foundRegisteredUser.isPresent() ||
+                !userRegisterDTO.getPassword().equals(userRegisterDTO.getConfirmPassword())) {
             return false;
         }
 
-        userRepository.save(map(UserRegisterDTO, userRoleRepository));
+        userRepository.save(map(userRegisterDTO, userRoleRepository));
 
         return true;
     }
 
-    private static User map(UserRegisterDTO UserRegisterDTO, UserRoleRepository userRoleRepository) {
+    private static User map(UserRegisterDTO userRegisterDTO, UserRoleRepository userRoleRepository) {
         UserRole role = new UserRole();
         role.setRoleType(RoleType.ADMIN);
 
         User user = new User()
                 .setActive(true)
-                .setUsername(UserRegisterDTO.getUsername())
-                .setPassword(UserRegisterDTO.getPassword())
-                .setFirstName(UserRegisterDTO.getFirstName())
-                .setLastName(UserRegisterDTO.getLastName())
+                .setUsername(userRegisterDTO.getUsername())
+                .setPassword(userRegisterDTO.getPassword())
+                .setFirstName(userRegisterDTO.getFirstName())
+                .setLastName(userRegisterDTO.getLastName())
                 .setCreated(new Date())
                 .setModified(new Date())
                 .setRole(role);

@@ -5,34 +5,36 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.softuni.mobilele.model.enums.EngineType;
 import org.softuni.mobilele.model.enums.TransmissionType;
+import org.softuni.mobilele.model.validation.YearNotInTheFuture;
 
 public final class CreateOfferDTO {
     //TODO: Check Model field
-    @NotNull
+    @NotNull(message = "Suggested price is required.")
     @Positive
     private Double price;
 
-    @NotNull
+    @NotNull(message = "Engine type is required.")
     private EngineType engine;
 
-    @NotNull
+    @NotNull(message = "Transmission type is required.")
     private TransmissionType transmission;
 
-    @NotNull
+    @YearNotInTheFuture
+    @NotNull(message = "Manufacturing year is required.")
     @Positive
     private Integer year;
 
-    @NotNull
+    @NotNull(message = "Mileage in kilometers is required.")
     @Positive
     private Integer mileage;
 
-    @NotEmpty
+    @NotEmpty(message = "Description is required.")
     private String description;
 
-    @NotEmpty
+    @NotEmpty(message = "Vehicle image URL is required.")
     private String imageURL;
 
-    @NotNull
+    @NotNull(message = "Vehicle model is required.")
     Long modelID;
 
     public Double getPrice() {

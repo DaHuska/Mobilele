@@ -47,7 +47,7 @@ public class UserController {
             isRegisterSuccess = userService.registerUser(userRegisterDTO);
         }
 
-        return isRegisterSuccess ? "redirect:/" : "redirect:/users/register";
+        return isRegisterSuccess ? "redirect:/users/login" : "redirect:/users/register";
     }
 
     @GetMapping("/login")
