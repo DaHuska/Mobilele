@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.softuni.mobilele.model.enums.CategoryType;
+import org.softuni.mobilele.model.validation.DateNotInTheFuture;
+import org.softuni.mobilele.model.validation.YearNotInTheFuture;
 
 import java.util.Date;
 
@@ -34,19 +36,22 @@ public class Model {
 
     @Min(1940)
     @NotNull
+    @YearNotInTheFuture
     @Column(name = "start_year", nullable = false)
     private Integer startYear;
 
-    //TODO: custom
     @NotNull
+    @YearNotInTheFuture
     @Column(name = "end_year", nullable = false)
     private Integer endYear;
 
     @NotNull
+    @DateNotInTheFuture
     @Column(nullable = false)
     private Date created;
 
     @NotNull
+    @DateNotInTheFuture
     @Column(nullable = false)
     private Date modified;
 

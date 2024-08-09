@@ -3,6 +3,7 @@ package org.softuni.mobilele.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.softuni.mobilele.model.validation.DateNotInTheFuture;
 
 import java.util.Date;
 import java.util.List;
@@ -24,10 +25,12 @@ public class Brand {
     private String name;
 
     @NotNull
+    @DateNotInTheFuture
     @Column(nullable = false)
     private Date created;
 
     @NotNull
+    @DateNotInTheFuture
     @Column(nullable = false)
     private Date modified;
 

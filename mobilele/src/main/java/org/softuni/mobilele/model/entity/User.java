@@ -3,6 +3,7 @@ package org.softuni.mobilele.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.softuni.mobilele.model.validation.DateNotInTheFuture;
 
 import java.util.Date;
 
@@ -42,10 +43,12 @@ public class User {
     private String imageURL;
 
     @NotNull
+    @DateNotInTheFuture
     @Column
     private Date created;
 
     @NotNull
+    @DateNotInTheFuture
     @Column
     private Date modified;
 

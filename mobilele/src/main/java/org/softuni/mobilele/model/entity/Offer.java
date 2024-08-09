@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.softuni.mobilele.model.enums.EngineType;
 import org.softuni.mobilele.model.enums.TransmissionType;
+import org.softuni.mobilele.model.validation.DateNotInTheFuture;
 
 import java.util.Date;
 
@@ -46,12 +47,13 @@ public class Offer {
     @Column(nullable = false)
     private Integer year;
 
-    //TODO: custom validation
     @NotNull
+    @DateNotInTheFuture
     @Column(nullable = false)
     private Date created;
 
     @NotNull
+    @DateNotInTheFuture
     @Column
     private Date modified;
 
