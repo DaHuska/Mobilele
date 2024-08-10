@@ -68,7 +68,7 @@
                        type="password"
                        class="form-control"
                        placeholder="Confirm Password"/>
-                <p class="invalid-feedback errors alert alert-danger">
+                <p class="invalid-feedback errors alert alert-danger" th:errors="*{confirmPassword}">
                     Password Confirmation Required
                 </p>
             </div>
