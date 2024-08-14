@@ -18,6 +18,8 @@ public class OpenExchangeRateConfig {
 
     private String path;
 
+    private boolean isEnabled;
+
     @Override
     public String toString() {
         return "OpenExchangeRateConfig{" +
@@ -25,6 +27,8 @@ public class OpenExchangeRateConfig {
                 ", symbols=" + symbols +
                 ", host='" + host + '\'' +
                 ", schema='" + schema + '\'' +
+                ", path='" + path + '\'' +
+                ", isEnabled=" + isEnabled +
                 '}';
     }
 
@@ -66,5 +70,13 @@ public class OpenExchangeRateConfig {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
     }
 }

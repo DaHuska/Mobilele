@@ -38,6 +38,15 @@ public class CurrencyServiceImpl implements CurrencyService {
             LOGGER.error("Unable to get exchange rate for BGN to USD");
         }
 
+        if (BGN_TO_EUR != null) {
+            ExchangeRate exchangeRate = new ExchangeRate()
+                    .setCurrency("EUR").setRate(BGN_TO_EUR);
+
+            exchangeRateRepository.save(exchangeRate);
+        } else {
+            LOGGER.error("Unable to get exchange rate for BGN to EUR");
+        }
+
     }
 
     private static Optional<BigDecimal> getExchangeRate(ExchangeRatesDTO exchangeRatesDTO, String from, String to) {

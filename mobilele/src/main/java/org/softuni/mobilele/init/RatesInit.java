@@ -24,23 +24,25 @@ public class RatesInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String openExchangeRateURLTemplate =
-                new StringBuilder()
-                        .append(openExchangeRateConfig.getSchema())
-                        .append("://")
-                        .append(openExchangeRateConfig.getHost())
-                        .append(openExchangeRateConfig.getPath())
-                        .append("?app_id={app_id}&symbols={symbols}")
-                        .toString();
+        if (openExchangeRateConfig.isEnabled()) {
+            String openExchangeRateURLTemplate =
+                    new StringBuilder()
+                            .append(openExchangeRateConfig.getSchema())
+                            .append("://")
+                            .append(openExchangeRateConfig.getHost())
+                            .append(openExchangeRateConfig.getPath())
+                            .append("?app_id={app_id}&symbols={symbols}")
+                            .toString();
 
-        Map<String, String> requestParams = Map.of(
-                "app_id", openExchangeRateConfig.getAppID(),
-                "symbols", String.join(",", openExchangeRateConfig.getSymbols())
-        );
+            Map<String, String> requestParams = Map.of(
+                    "app_id", openExchangeRateConfig.getAppID(),
+                    "symbols", String.join(",", openExchangeRateConfig.getSymbols())
+            );
 
-        ExchangeRatesDTO exchangeRatesDTO = restTemplate
-                .getForObject(openExchangeRateURLTemplate, ExchangeRatesDTO.class, requestParams);
+            ExchangeRatesDTO exchangeRatesDTO = restTemplate
+                    .getForObject(openExchangeRateURLTemplate, ExchangeRatesDTO.class, requestParams);
 
-        currencyService.refreshRates(exchangeRatesDTO);
+            currencyService.refreshRates(exchangeRatesDTO);
+        }
     }
 }
