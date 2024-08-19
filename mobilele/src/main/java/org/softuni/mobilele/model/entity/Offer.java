@@ -61,7 +61,7 @@ public class Offer {
     private Model model;
 
     @ManyToOne
-    private User seller;
+    private UserEntity seller;
 
     public Long getId() {
         return id;
@@ -171,11 +171,11 @@ public class Offer {
         return this;
     }
 
-    public User getSeller() {
+    public UserEntity getSeller() {
         return seller;
     }
 
-    public Offer setSeller(User seller) {
+    public Offer setSeller(UserEntity seller) {
         this.seller = seller;
 
         return this;

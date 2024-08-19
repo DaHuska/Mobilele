@@ -2,7 +2,7 @@ package org.softuni.mobilele.model.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.softuni.mobilele.model.entity.User;
+import org.softuni.mobilele.model.entity.UserEntity;
 import org.softuni.mobilele.repository.UserRepository;
 
 import java.util.Optional;
@@ -16,7 +16,7 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
 
     @Override
     public boolean isValid(String username, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<User> isExistent = userRepository.findByUsername(username);
+        Optional<UserEntity> isExistent = userRepository.findByUsername(username);
 
         return isExistent.isEmpty();
     }

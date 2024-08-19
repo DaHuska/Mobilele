@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -35,7 +35,7 @@ public class User {
     @Column(name = "is_active")
     boolean isActive;
 
-    @NotNull
+//    @NotNull
     @ManyToOne
     private UserRole role;
 
@@ -56,7 +56,7 @@ public class User {
         return id;
     }
 
-    public User setId(Long id) {
+    public UserEntity setId(Long id) {
         this.id = id;
         return this;
     }
@@ -65,7 +65,7 @@ public class User {
         return username;
     }
 
-    public User setUsername(String username) {
+    public UserEntity setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -74,7 +74,7 @@ public class User {
         return password;
     }
 
-    public User setPassword(String password) {
+    public UserEntity setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -83,7 +83,7 @@ public class User {
         return firstName;
     }
 
-    public User setFirstName(String firstName) {
+    public UserEntity setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -92,7 +92,7 @@ public class User {
         return lastName;
     }
 
-    public User setLastName(String lastName) {
+    public UserEntity setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -101,7 +101,7 @@ public class User {
         return isActive;
     }
 
-    public User setActive(boolean active) {
+    public UserEntity setActive(boolean active) {
         isActive = active;
         return this;
     }
@@ -110,7 +110,7 @@ public class User {
         return role;
     }
 
-    public User setRole(UserRole role) {
+    public UserEntity setRole(UserRole role) {
         this.role = role;
         return this;
     }
@@ -119,7 +119,7 @@ public class User {
         return imageURL;
     }
 
-    public User setImageURL(String imageURL) {
+    public UserEntity setImageURL(String imageURL) {
         this.imageURL = imageURL;
         return this;
     }
@@ -128,7 +128,7 @@ public class User {
         return created;
     }
 
-    public User setCreated(Date created) {
+    public UserEntity setCreated(Date created) {
         this.created = created;
         return this;
     }
@@ -137,7 +137,7 @@ public class User {
         return modified;
     }
 
-    public User setModified(Date modified) {
+    public UserEntity setModified(Date modified) {
         this.modified = modified;
         return this;
     }

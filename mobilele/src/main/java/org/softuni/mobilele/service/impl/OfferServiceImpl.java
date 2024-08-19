@@ -3,12 +3,10 @@ package org.softuni.mobilele.service.impl;
 import org.softuni.mobilele.model.dto.CreateOfferDTO;
 import org.softuni.mobilele.model.entity.Model;
 import org.softuni.mobilele.model.entity.Offer;
-import org.softuni.mobilele.model.entity.User;
 import org.softuni.mobilele.repository.ModelRepository;
 import org.softuni.mobilele.repository.OfferRepository;
 import org.softuni.mobilele.repository.UserRepository;
 import org.softuni.mobilele.service.OfferService;
-import org.softuni.mobilele.util.CurrentUser;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -17,13 +15,11 @@ import java.util.List;
 @Service
 public class OfferServiceImpl implements OfferService {
     private final OfferRepository offerRepository;
-    private final CurrentUser currentUser;
     private final UserRepository userRepository;
     private final ModelRepository modelRepository;
 
-    public OfferServiceImpl(OfferRepository offerRepository, CurrentUser currentUser, UserRepository userRepository, ModelRepository modelRepository) {
+    public OfferServiceImpl(OfferRepository offerRepository, UserRepository userRepository, ModelRepository modelRepository) {
         this.offerRepository = offerRepository;
-        this.currentUser = currentUser;
         this.userRepository = userRepository;
         this.modelRepository = modelRepository;
     }
@@ -40,7 +36,6 @@ public class OfferServiceImpl implements OfferService {
 
     private Offer map(CreateOfferDTO createOfferDTO) {
         // Optimize repository injections
-        User user = userRepository.findByUsername(currentUser.getUsername()).get();
         Model model = modelRepository.findById(createOfferDTO.getModelID()).get();
 
         return new Offer()
@@ -53,7 +48,6 @@ public class OfferServiceImpl implements OfferService {
                 .setYear(createOfferDTO.getYear())
                 .setCreated(new Date())
                 .setModified(new Date())
-                .setModel(model)
-                .setSeller(user);
+                .setModel(model);
     }
 }
