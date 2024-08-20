@@ -5,7 +5,9 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.softuni.mobilele.model.validation.DateNotInTheFuture;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -33,11 +35,16 @@ public class UserEntity {
 
     @NotNull
     @Column(name = "is_active")
-    boolean isActive;
+    private boolean isActive;
 
-//    @NotNull
-    @ManyToOne
-    private UserRole role;
+    @NotNull
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<UserRole> roles = new ArrayList<>();
 
     @Column(name = "image_url")
     private String imageURL;
@@ -106,12 +113,12 @@ public class UserEntity {
         return this;
     }
 
-    public UserRole getRole() {
-        return role;
+    public List<UserRole> getRoles() {
+        return roles;
     }
 
-    public UserEntity setRole(UserRole role) {
-        this.role = role;
+    public UserEntity setRole(List<UserRole> roles) {
+        this.roles = roles;
         return this;
     }
 
